@@ -256,3 +256,13 @@ System works even when AI is disabled.
 * Team collaboration mode
 * Auto documentation generation
 
+
+  ---
+  # Performance Note
+
+This application(https://glistening-mermaid-54ec41.netlify.app/) is optimized for desktop/laptop environments.
+
+Mobile browsers may experience reduced performance during large file or ZIP analysis
+
+due to heavy chart rendering and GPU-intensive Ul effects.
+
