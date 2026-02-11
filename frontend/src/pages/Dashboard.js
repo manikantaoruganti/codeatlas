@@ -164,9 +164,19 @@ export const Dashboard = () => {
                           <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                         ))}
                       </Pie>
-                      <Tooltip
+                      {/* <Tooltip
                         contentStyle={{ background: '#121214', border: '1px solid #27272A', borderRadius: '0.5rem' }}
-                      />
+                      /> */}
+                      <Tooltip
+  contentStyle={{
+    backgroundColor: '#121214',
+    border: '1px solid #27272A',
+    borderRadius: '0.5rem'
+  }}
+  labelStyle={{ color: '#ffffff' }}
+  itemStyle={{ color: '#ffffff' }}
+/>
+
                     </PieChart>
                   </ResponsiveContainer>
                 </div>

@@ -35,8 +35,9 @@
 
 body {
   font-family: 'IBM Plex Sans', sans-serif;
-  background-color: #0A0A0B;
-  color: #EDEDEF;
+ background-color: #0f172a;
+ color: #f1f5f9;
+ 
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

@@ -91,6 +91,35 @@
 #             "smells": []
 #         }
 
+# class BaseAdapter:
+#     def analyze(self, code=None):
+#         if code is None:
+#             code = ""
+#         if not isinstance(code, str):
+#             code = str(code)
+
+#         lines = code.splitlines()
+
+#         # very simple detection (safe)
+#         functions = []
+#         classes = []
+
+#         for line in lines:
+#             stripped = line.strip()
+
+#             if stripped.startswith("def ") or stripped.startswith("function "):
+#                 functions.append(stripped)
+
+#             if stripped.startswith("class "):
+#                 classes.append(stripped)
+
+#         return {
+#             "functions": functions,      # MUST be list
+#             "classes": classes,          # MUST be list
+#             "complexity": 1,
+#             "nesting_depth": 0
+#         }
+
 class BaseAdapter:
     def analyze(self, code=None):
         if code is None:
@@ -100,26 +129,47 @@ class BaseAdapter:
 
         lines = code.splitlines()
 
-        # very simple detection (safe)
         functions = []
         classes = []
+
+        # Decision keywords for complexity
+        keywords = [
+            "if ", "elif ", "for ", "while ",
+            "and ", "or ", "except ", "case ",
+            "catch ", "&&", "||"
+        ]
+
+        complexity = 1
+
+        max_indent = 0
 
         for line in lines:
             stripped = line.strip()
 
+            # Detect functions
             if stripped.startswith("def ") or stripped.startswith("function "):
                 functions.append(stripped)
 
+            # Detect classes
             if stripped.startswith("class "):
                 classes.append(stripped)
 
-        return {
-            "functions": functions,      # MUST be list
-            "classes": classes,          # MUST be list
-            "complexity": 1,
-            "nesting_depth": 0
-        }
+            # Increase complexity for decision keywords
+            for keyword in keywords:
+                complexity += stripped.count(keyword)
 
+            # Approximate nesting depth (indent based)
+            spaces = len(line) - len(line.lstrip(' '))
+            indent_level = spaces // 4
+            if indent_level > max_indent:
+                max_indent = indent_level
+
+        return {
+            "functions": functions,
+            "classes": classes,
+            "complexity": complexity,
+            "nesting_depth": max_indent
+        }
 
 
 class PythonAdapter(BaseAdapter):
