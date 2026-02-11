@@ -152,7 +152,7 @@ Dashboard & Reports
 
 * React (JavaScript)
 * Tailwind CSS
-* Monaco Editor
+* Interactive Code Editor
 * Recharts
 
 ## Backend
