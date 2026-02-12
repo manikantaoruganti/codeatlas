@@ -145,7 +145,11 @@ Dashboard & Reports
 ```
 
 ---
-
+---
+## Architecture Diagram
+---
+![CodeAtlas AI Architecture](images/architectureca.png)
+---
 # Technology Stack
 
 ## Frontend
