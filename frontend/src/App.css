@@ -1,0 +1,99 @@
+/* Component-specific styles */
+.App {
+  min-height: 100vh;
+}
+
+/* Button hover effects */
+.btn-hover {
+  transition: all 0.2s ease-out;
+}
+
+.btn-hover:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.1);
+}
+
+/* Smooth transitions */
+.transition-smooth {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Grid borders for data density */
+.grid-border {
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Monaco editor wrapper */
+.monaco-wrapper {
+  border: 1px solid #27272A;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+/* Chart containers */
+.chart-container {
+  background: #121214;
+  border: 1px solid #27272A;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+}
+
+/* Health score animations */
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* File tree styles */
+.file-tree-item {
+  padding: 0.5rem;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  transition: background-color 0.2s;
+}
+
+.file-tree-item:hover {
+  background-color: rgba(37, 99, 235, 0.1);
+}
+
+.file-tree-item.active {
+  background-color: rgba(37, 99, 235, 0.2);
+  border-left: 2px solid #2563EB;
+}
+
+/* Code smell badge */
+.smell-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  border-radius: 0.25rem;
+  font-weight: 500;
+}
+
+.smell-badge.high {
+  background-color: rgba(239, 68, 68, 0.2);
+  color: #EF4444;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.smell-badge.medium {
+  background-color: rgba(245, 158, 11, 0.2);
+  color: #F59E0B;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.smell-badge.low {
+  background-color: rgba(16, 185, 129, 0.2);
+  color: #10B981;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
