@@ -414,8 +414,4 @@ logger = logging.getLogger(__name__)
 
 @app.on_event("shutdown")
 async def shutdown_db_client():
-<<<<<<< HEAD
     client.close()
-=======
-    client.close()
->>>>>>> 86feefa1a6fc4d20d204dee2db90263f4c270681
