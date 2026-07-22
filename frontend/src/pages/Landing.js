@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 import { Navigation } from '@/components/Navigation';
 import { Button } from '@/components/ui/button';
 import {
-  Code2,
   Zap,
   Shield,
   Sparkles,
@@ -13,234 +12,265 @@ import {
   GitBranch,
   Terminal,
   ChevronRight,
+  Code,
+  ShieldCheck,
+  Eye,
+  GitPullRequest
 } from 'lucide-react';
+import { GlassCard } from '@/components/dashboard/GlassCard';
 
 export const Landing = () => {
   const features = [
     {
       icon: FileSearch,
       title: 'Multi-Language Analysis',
-      description: 'Support for Python, JavaScript, Java, C++, Go, Rust, SQL, and Bash',
+      description: 'Instant parsing support for Python, JavaScript, Java, C++, Go, Rust, SQL, and Bash.',
+      color: 'text-blue-400'
     },
     {
       icon: TrendingUp,
       title: 'Code Health Index',
-      description: 'Real-time health scoring from 0-100 based on complexity and maintainability',
+      description: 'Real-time health grading (0-100) computed from cyclomatic complexity and clean code guidelines.',
+      color: 'text-emerald-400'
     },
     {
       icon: Zap,
       title: 'Hotspot Detection',
-      description: 'Identify risky code areas and prioritize refactoring efforts',
+      description: 'Isolate complex hotspots, prioritize refactoring, and reduce code regressions.',
+      color: 'text-amber-400'
     },
     {
       icon: GitBranch,
       title: 'Refactor Strategies',
-      description: 'Automated actionable recommendations with impact analysis',
+      description: 'Prioritized technical debt remediation strategies mapping execution effort vs potential impact.',
+      color: 'text-purple-400'
     },
     {
       icon: Terminal,
       title: 'Integrated Compiler',
-      description: 'Execute and test code directly in the platform',
+      description: 'Execute scripts in an isolated code compiler sandbox with active debugging.',
+      color: 'text-cyan-400'
     },
     {
       icon: Sparkles,
-      title: 'AI Insights',
-      description: 'Optional AI-powered explanations and optimization suggestions',
+      title: 'AI Explainers',
+      description: 'AI-assisted code explainers to simplify complicated legacy logic blocks instantly.',
+      color: 'text-pink-400'
     },
   ];
 
+  // Tech list for tech wall
+  const languages = [
+    'Python', 'JavaScript', 'TypeScript', 'Java', 'C++', 'Go', 'Rust', 'Ruby', 'PHP', 'Bash', 'SQL', 'Kotlin', 'Swift'
+  ];
+
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-zinc-950 text-zinc-100 overflow-hidden relative">
       <Navigation variant="landing" />
 
-      {/* Hero Section */}
+      {/* Grid overlay */}
+      <div className="absolute inset-0 grid-bg opacity-15 pointer-events-none z-0" />
+
+      {/* Aurora glow blobs */}
+      <div className="absolute top-1/4 left-1/4 w-[400px] h-[400px] rounded-full bg-blue-600/10 blur-[100px] pointer-events-none z-0 animate-pulse" />
+      <div className="absolute top-1/3 right-1/4 w-[500px] h-[500px] rounded-full bg-emerald-600/5 blur-[120px] pointer-events-none z-0" />
+
+      {/* Cinematic Hero */}
       <section
-        className="relative pt-32 pb-20 overflow-hidden"
-        style={{
-          backgroundImage: 'url(https://images.unsplash.com/photo-1762279388956-1c098163a2a8?crop=entropy&cs=srgb&fm=jpg&q=85)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
+        className="relative pt-36 pb-24 overflow-hidden z-10"
         data-testid="hero-section"
       >
-        <div className="absolute inset-0 bg-black/80" />
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center"
-          >
-            <div className="inline-flex items-center space-x-2 px-4 py-2 glass rounded-full mb-8" data-testid="hero-badge">
-              <Shield className="w-4 h-4 text-neon-green" />
-              <span className="text-sm">Production-Grade Code Intelligence</span>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+          <div className="text-center space-y-8">
+            {/* Glowing Hero Badge */}
+            <div className="inline-flex items-center space-x-2 px-3 py-1 bg-zinc-900 border border-zinc-800 rounded-full text-xs text-zinc-400 glow-text-blue" data-testid="hero-badge">
+              <Shield className="w-3.5 h-3.5 text-blue-500" />
+              <span>Production-Grade Code Intelligence Hub</span>
             </div>
 
+            {/* Title */}
             <h1
-              className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-none mb-6"
+              className="text-4xl sm:text-5xl lg:text-7xl font-extrabold tracking-tight leading-[1.1] text-white"
               style={{ fontFamily: 'Chivo, sans-serif' }}
               data-testid="hero-title"
             >
               Master Your Codebase
               <br />
-              <span className="text-electric-blue">With AI-Powered Insights</span>
+              <span className="bg-gradient-to-r from-blue-400 via-indigo-400 to-emerald-400 bg-clip-text text-transparent">
+                With AI-Powered Insights
+              </span>
             </h1>
 
-            <p className="text-lg sm:text-xl text-text-secondary max-w-3xl mx-auto mb-12 leading-relaxed" data-testid="hero-description">
-              CodeAtlas AI analyzes your code across 8 programming languages, detects complexity hotspots,
-              calculates health scores, and generates refactoring strategies—all without requiring AI.
+            {/* Description */}
+            <p className="text-sm sm:text-base text-zinc-400 max-w-3xl mx-auto leading-relaxed" data-testid="hero-description">
+              CodeAtlas AI parses code repositories, maps hot structural metrics, computes maintainability benchmarks, and flags smells across 8 programming languages—all packaged in a dark mode SaaS interface.
             </p>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+            {/* Action buttons */}
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
               <Link to="/workspace">
                 <Button
                   size="lg"
-                  className="bg-electric-blue hover:bg-blue-600 btn-hover text-lg px-8 py-6"
+                  className="bg-blue-600 hover:bg-blue-500 text-white font-semibold px-8 py-6 text-sm shadow-[0_4px_20px_rgba(37,99,235,0.3)] hover:shadow-[0_4px_25px_rgba(37,99,235,0.45)] transition-all"
                   data-testid="hero-cta-button"
                 >
                   Start Analyzing
-                  <ChevronRight className="ml-2 w-5 h-5" />
+                  <ChevronRight className="ml-2 w-4 h-4" />
                 </Button>
               </Link>
               <Link to="/compiler">
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-electric-blue text-electric-blue hover:bg-electric-blue/10 text-lg px-8 py-6"
+                  className="border-zinc-800 bg-zinc-950/40 text-zinc-300 hover:text-zinc-100 hover:bg-zinc-900 px-8 py-6 text-sm transition-all"
                   data-testid="hero-compiler-button"
                 >
-                  <Terminal className="mr-2 w-5 h-5" />
-                  Try Compiler
+                  <Terminal className="mr-2 w-4.5 h-4.5 text-blue-500" />
+                  Try Compiler IDE
                 </Button>
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
-      {/* Features Section */}
-      <section id="features" className="py-24 bg-surface" data-testid="features-section">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <p className="text-sm uppercase tracking-widest text-electric-blue mb-4" data-testid="features-label">
-              Features
-            </p>
-            <h2
-              className="text-3xl sm:text-4xl font-black"
-              style={{ fontFamily: 'Chivo, sans-serif' }}
-              data-testid="features-title"
-            >
-              Everything You Need for Code Excellence
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {features.map((feature, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="glass-card p-8 rounded-md hover:border-electric-blue/50 border border-border transition-smooth"
-                data-testid={`feature-card-${index}`}
+      {/* Tech Wall Section */}
+      <section className="py-10 border-y border-zinc-900 bg-zinc-950/60 overflow-hidden relative z-10">
+        <div className="max-w-7xl mx-auto px-4 text-center">
+          <p className="text-[10px] uppercase font-bold text-zinc-500 tracking-widest mb-6">
+            Supported Engineering Ecosystems
+          </p>
+          <div className="flex flex-wrap justify-center gap-2.5">
+            {languages.map((lang, idx) => (
+              <span
+                key={idx}
+                className="px-3.5 py-1.5 rounded-lg bg-zinc-900/60 border border-zinc-850 text-xs font-mono text-zinc-400 select-none hover:border-zinc-700 transition-colors"
               >
-                <feature.icon className="w-12 h-12 text-electric-blue mb-4" />
-                <h3 className="text-xl font-bold mb-3" style={{ fontFamily: 'Chivo, sans-serif' }} data-testid={`feature-title-${index}`}>
-                  {feature.title}
-                </h3>
-                <p className="text-text-secondary leading-relaxed" data-testid={`feature-description-${index}`}>
-                  {feature.description}
-                </p>
-              </motion.div>
+                {lang}
+              </span>
             ))}
           </div>
         </div>
       </section>
 
-      {/* How It Works */}
-      <section
-        id="how-it-works"
-        className="py-24 relative"
-        style={{
-          backgroundImage: 'url(https://images.unsplash.com/photo-1762279389006-43963a0cee55?crop=entropy&cs=srgb&fm=jpg&q=85)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
-        data-testid="how-it-works-section"
-      >
-        <div className="absolute inset-0 bg-black/85" />
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <p className="text-sm uppercase tracking-widest text-electric-blue mb-4" data-testid="how-it-works-label">
-              How It Works
+      {/* Bento Grid Feature Section */}
+      <section id="features" className="py-24 relative z-10" data-testid="features-section">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
+            <p className="text-[10px] uppercase font-bold tracking-widest text-blue-500" data-testid="features-label">
+              Platform Features
             </p>
             <h2
-              className="text-3xl sm:text-4xl font-black"
+              className="text-2xl sm:text-3xl font-extrabold text-white"
+              style={{ fontFamily: 'Chivo, sans-serif' }}
+              data-testid="features-title"
+            >
+              Advanced Static Observability
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {features.map((feat, index) => (
+              <GlassCard
+                key={index}
+                delay={index * 0.05}
+                hoverEffect={true}
+                className="border border-zinc-900 bg-zinc-950/30 p-6 flex flex-col justify-between min-h-[220px]"
+                data-testid={`feature-card-${index}`}
+              >
+                <div className="space-y-4">
+                  <div className={`p-2.5 rounded-lg bg-zinc-900 border border-zinc-850 w-fit ${feat.color}`}>
+                    <feat.icon className="w-5 h-5" />
+                  </div>
+                  <h3 className="text-base font-bold text-zinc-200" style={{ fontFamily: 'Chivo, sans-serif' }} data-testid={`feature-title-${index}`}>
+                    {feat.title}
+                  </h3>
+                  <p className="text-xs text-zinc-500 leading-relaxed" data-testid={`feature-description-${index}`}>
+                    {feat.description}
+                  </p>
+                </div>
+              </GlassCard>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works Flow */}
+      <section
+        id="how-it-works"
+        className="py-24 border-t border-zinc-900 relative z-10"
+        data-testid="how-it-works-section"
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
+            <p className="text-[10px] uppercase font-bold tracking-widest text-blue-500" data-testid="how-it-works-label">
+              Workflows
+            </p>
+            <h2
+              className="text-2xl sm:text-3xl font-extrabold text-white"
               style={{ fontFamily: 'Chivo, sans-serif' }}
               data-testid="how-it-works-title"
             >
-              Simple. Fast. Powerful.
+              Analyze Repositories in 3 Steps
             </h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              { step: '01', title: 'Upload Code', desc: 'Drop a file or ZIP containing your project' },
-              { step: '02', title: 'Analyze', desc: 'Get instant metrics, smells, and hotspot detection' },
-              { step: '03', title: 'Refactor', desc: 'Follow prioritized strategies to improve code health' },
+              { step: '01', title: 'Drop Repositories', desc: 'Drag-and-drop source files or code zip archives.', icon: Code },
+              { step: '02', title: 'Compile Metrics', desc: 'Trace health index ratings, cyclomatic complex charts, and smells.', icon: Eye },
+              { step: '03', title: 'Refactor Roadmaps', desc: 'Execute recommended tasks to resolve technical debt.', icon: GitPullRequest },
             ].map((item, i) => (
-              <motion.div
+              <div
                 key={i}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: i * 0.2 }}
-                className="text-center"
+                className="text-center space-y-4 p-6 rounded-xl bg-zinc-900/10 border border-zinc-900/40 relative group"
                 data-testid={`how-it-works-step-${i}`}
               >
                 <div
-                  className="text-6xl font-black text-electric-blue/20 mb-4"
-                  style={{ fontFamily: 'Chivo, sans-serif' }}
+                  className="text-5xl font-black text-zinc-800/40 group-hover:text-blue-500/10 transition-colors font-mono"
                   data-testid={`step-number-${i}`}
                 >
                   {item.step}
                 </div>
-                <h3 className="text-2xl font-bold mb-3" data-testid={`step-title-${i}`}>
+                <h3 className="text-base font-bold text-zinc-200" data-testid={`step-title-${i}`}>
                   {item.title}
                 </h3>
-                <p className="text-text-secondary" data-testid={`step-description-${i}`}>
+                <p className="text-xs text-zinc-500 leading-relaxed" data-testid={`step-description-${i}`}>
                   {item.desc}
                 </p>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-24 bg-surface" data-testid="cta-section">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      {/* CTA Box */}
+      <section className="py-24 border-t border-zinc-900 bg-zinc-900/10 relative z-10" data-testid="cta-section">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
           <h2
-            className="text-3xl sm:text-4xl font-black mb-6"
+            className="text-3xl sm:text-4xl font-extrabold text-white"
             style={{ fontFamily: 'Chivo, sans-serif' }}
             data-testid="cta-title"
           >
-            Ready to Transform Your Code?
+            Ready to Analyze Your Projects?
           </h2>
-          <p className="text-lg text-text-secondary mb-8" data-testid="cta-description">
-            Start analyzing your codebase in seconds. No API keys required.
+          <p className="text-sm text-zinc-400 max-w-lg mx-auto" data-testid="cta-description">
+            Drop your code ZIP archive and start compiling diagnostic health indexes in seconds.
           </p>
-          <Link to="/workspace">
-            <Button size="lg" className="bg-electric-blue hover:bg-blue-600 btn-hover text-lg px-8 py-6" data-testid="cta-button">
-              Get Started Free
-            </Button>
-          </Link>
+          <div className="pt-2">
+            <Link to="/workspace">
+              <Button size="lg" className="bg-blue-600 hover:bg-blue-500 text-white font-semibold px-8 py-6 text-sm shadow-[0_4px_20px_rgba(37,99,235,0.3)]" data-testid="cta-button">
+                Start Workspace Session
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="py-8 border-t border-border" data-testid="footer">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm text-muted-foreground">
-          <p>© 2025 CodeAtlas AI. Production-grade code intelligence platform.</p>
+      <footer className="py-10 border-t border-zinc-900 bg-zinc-950 relative z-10" data-testid="footer">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-xs text-zinc-600">
+          <p>© 2026 CodeAtlas AI. All rights reserved. Enterprise Code Observability platform.</p>
         </div>
       </footer>
     </div>
